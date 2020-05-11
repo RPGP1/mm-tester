@@ -60,6 +60,9 @@ Tester<Element>::Tester(int argc, char* argv[])
               'r',
               "path to the result file",
               false, "result.dat");
+          parser.add("help",
+              'h',
+              "show this help message");
 
           if (!parser.parse(argc, argv)) {
               throw TesterImpl::BadCommandLineArguments{parser};
