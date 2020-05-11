@@ -1,0 +1,6 @@
+[submodule "cmdline"]
+	path = cmdline
+	url = https://github.com/tanakh/cmdline.git
+[submodule "mm-problem"]
+	path = mm-problem
+	url = git@gitlab.eidos.ic.i.u-tokyo.ac.jp:hideshima/mm-problem.git
