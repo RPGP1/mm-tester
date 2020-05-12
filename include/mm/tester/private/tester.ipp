@@ -64,10 +64,11 @@ Tester<Element>::Tester(int argc, char* argv[])
               'h',
               "show this help message");
 
-          if (!parser.parse(argc, argv)) {
-              throw TesterImpl::BadCommandLineArguments{parser};
-          } else if (parser.exist("help")) {
+          auto success = parser.parse(argc, argv);
+          if (parser.exist("help")) {
               throw TesterImpl::CommandLineHelp{parser};
+          } else if (!success) {
+              throw TesterImpl::BadCommandLineArguments{parser};
           }
 
           m_result_path = parser.get<fs::path>("result");
