@@ -47,7 +47,8 @@ class Tester<Element>::Timer final
 
 template <class Element>
 Tester<Element>::Tester(int argc, char* argv[])
-    : m_reader{[&] {
+    : m_duration{std::chrono::high_resolution_clock::duration::max()},
+      m_reader{[&] {
           namespace fs = std::filesystem;
 
           cmdline::parser parser;
@@ -74,8 +75,7 @@ Tester<Element>::Tester(int argc, char* argv[])
           m_result_path = parser.get<fs::path>("result");
 
           return parser.get<fs::path>("problem");
-      }()},
-      m_duration{std::chrono::high_resolution_clock::duration::max()}
+      }()}
 {
 }
 

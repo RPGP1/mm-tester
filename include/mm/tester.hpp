@@ -21,6 +21,8 @@ struct CommandLineHelp;
 template <class Element>
 class Tester
 {
+    std::chrono::high_resolution_clock::duration m_duration;
+
 public:
     Tester(int argc, char* argv[]);
     virtual ~Tester() = default;
@@ -30,11 +32,11 @@ public:
     class Timer;
     Timer timer() &;
 
+    std::chrono::high_resolution_clock::duration get_duration() const { return m_duration; }
+
 private:
     std::filesystem::path m_result_path;
     Problem::Reader<Element> m_reader;
-
-    std::chrono::high_resolution_clock::duration m_duration;
 };
 
 }  // namespace MM
