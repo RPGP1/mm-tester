@@ -21,7 +21,8 @@ struct CommandLineHelp;
 template <class Element>
 class Tester
 {
-    std::chrono::high_resolution_clock::duration m_duration;
+    std::filesystem::path m_problem_path, m_result_path;
+    std::chrono::high_resolution_clock::duration m_elapsed;
 
 public:
     Tester(int argc, char* argv[]);
@@ -32,10 +33,11 @@ public:
     class Timer;
     Timer timer() &;
 
-    std::chrono::high_resolution_clock::duration get_duration() const { return m_duration; }
+    auto elapsed() const { return m_elapsed; }
+    auto problem_file_path() const { return m_problem_path; }
+    auto result_file_path() const { return m_result_path; }
 
 private:
-    std::filesystem::path m_result_path;
     Problem::Reader<Element> m_reader;
 };
 

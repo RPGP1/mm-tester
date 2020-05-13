@@ -77,7 +77,7 @@ Tester<Element>::Tester(int argc, char* argv[])
 
           m_result_path = parser.get<fs::path>("result");
 
-          return parser.get<fs::path>("problem");
+          return m_problem_path = parser.get<fs::path>("problem");
       }()}
 {
 }
@@ -104,7 +104,7 @@ Tester<Element>::Timer::Timer(Tester<Element>& tester)
 template <class Element>
 Tester<Element>::Timer::~Timer()
 {
-    m_tester.m_duration = std::chrono::high_resolution_clock::now() - m_begin_time;
+    m_tester.m_elapsed = std::chrono::high_resolution_clock::now() - m_begin_time;
 }
 
 }  // namespace MM
