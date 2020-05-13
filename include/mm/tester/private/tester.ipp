@@ -50,8 +50,7 @@ private:
 
 template <class Element>
 Tester<Element>::Tester(int argc, char* argv[])
-    : m_elapsed{std::chrono::high_resolution_clock::duration::max()},
-      m_result_path{[&] {
+    : m_result_path{[&] {
           namespace fs = std::filesystem;
 
           cmdline::parser parser;
@@ -77,8 +76,9 @@ Tester<Element>::Tester(int argc, char* argv[])
 
           m_problem_path = parser.get<fs::path>("problem");
 
-          return m_result_path = parser.get<fs::path>("result");
+          return parser.get<fs::path>("result");
       }()},
+      m_elapsed{std::chrono::high_resolution_clock::duration::max()},
       m_reader{m_problem_path}
 {
 }
