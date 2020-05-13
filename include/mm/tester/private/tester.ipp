@@ -33,8 +33,11 @@ template <class Element>
 class Tester<Element>::Timer final
 {
     explicit Timer(Tester<Element>&);
+
+public:
     ~Timer();
 
+private:
     Timer(Timer const&) = delete;
     Timer& operator=(Timer const&) = delete;
 
